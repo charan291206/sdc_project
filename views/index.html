@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Portfolio</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>My Project Portfolio</h1>
+      <div style="display: flex; gap: 10px; align-items: center;">
+        <span>Welcome, <%= user.name %></span>
+        <a href="/add-project" class="btn-primary">+ Add New Project</a>
+        <a href="/logout" class="btn-secondary">Logout</a>
+      </div>
+    </header>
+
+    <div class="projects-grid">
+      <% if (projects.length === 0) { %>
+        <p class="no-projects">No projects yet. <a href="/add-project">Add your first project!</a></p>
+      <% } else { %>
+        <% projects.forEach(project => { %>
+          <div class="project-card">
+            <% if (project.media.length > 0) { %>
+              <img src="<%= project.media[0] %>" alt="<%= project.title %>" class="project-thumb">
+            <% } else { %>
+              <div class="no-image">No Image</div>
+            <% } %>
+
+            <div class="project-info">
+              <h3><%= project.title %></h3>
+              <p><strong>Category:</strong> <%= project.category %></p>
+              <p><strong>Status:</strong> 
+                <span class="status <%= project.milestone.toLowerCase().replace(' ', '-') %>">
+                  <%= project.milestone %>
+                </span>
+              </p>
+              <p><%= project.description.substring(0, 100) %>...</p>
+              <p><small>Uploaded: <%= project.uploadDate %></small></p>
+
+              <div class="links">
+                <% if (project.github) { %>
+                  <a href="<%= project.github %>" target="_blank">GitHub</a>
+                <% } %>
+                <% if (project.liveDemo) { %>
+                  <a href="<%= project.liveDemo %>" target="_blank">Live Demo</a>
+                <% } %>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+      <% } %>
+    </div>
+  </div>
+</body>
+</html>

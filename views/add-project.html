@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add New Project</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Add New Project</h1>
+      <div>
+        <span>Welcome, <%= user.name %></span>
+        <a href="/student-dashboard" class="btn-secondary">← Back to Dashboard</a>
+        <a href="/logout" class="btn-secondary">Logout</a>
+      </div>
+    </header>
+
+    <form action="/add-project" method="POST" enctype="multipart/form-data" class="project-form">
+      <div class="form-group">
+        <label for="title">Project Title *</label>
+        <input type="text" id="title" name="title" required>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description *</label>
+        <textarea id="description" name="description" rows="5" required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="category">Category</label>
+        <select id="category" name="category">
+          <option value="Web Development">Web Development</option>
+          <option value="Mobile App">Mobile App</option>
+          <option value="Data Science">Data Science</option>
+          <option value="Machine Learning">Machine Learning</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="milestone">Project Status</label>
+        <select id="milestone" name="milestone">
+          <option value="Planning">Planning</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Completed">Completed</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="github">GitHub Link</label>
+        <input type="url" id="github" name="github" placeholder="https://github.com/...">
+      </div>
+
+      <div class="form-group">
+        <label for="liveDemo">Live Demo Link</label>
+        <input type="url" id="liveDemo" name="liveDemo" placeholder="https://...">
+      </div>
+
+      <div class="form-group">
+        <label for="media">Upload Images/Files (Max 5)</label>
+        <input type="file" id="media" name="media" multiple accept="image/*,.pdf,.doc,.docx" max="5">
+      </div>
+
+      <button type="submit" class="btn-primary">Add Project</button>
+    </form>
+  </div>
+</body>
+</html>
